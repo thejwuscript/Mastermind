@@ -3,9 +3,9 @@
 class Codebreaker
   attr_accessor :name, :player_guess
 
-  def initialize(name)
-    @name = name
-    @player_guess = player_guess
+  def initialize
+    @name = "Codebreaker"
+    @player_guess = nil
   end
 
 end

@@ -3,5 +3,16 @@
 # starting with you guessing the computer’s random code.
 #
 # Assume the computer randomly selects the secret colors and the human player must guess them.
-#
-# puts "🔴🟠🟡🟢🔵🟣🟤⚪"
+#"🔴🟠🟡🟢🔵🟣🟤⚪"
+# puts 
+
+require_relative 'board.rb'
+require_relative 'codebreaker.rb'
+require_relative 'colors.rb'
+require_relative 'mastermind.rb'
+require_relative 'game.rb'
+
+puts "Let's play Mastermind."
+puts "AI will be the Mastermind. You will be the Codebreaker."
+
+Game.new.play
