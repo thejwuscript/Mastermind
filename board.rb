@@ -1,7 +1,11 @@
 # frozen_string_literal: true
+require_relative 'colors.rb'
 
 class Board
-  attr_accessor :input
+  
+  include Colors
+
+  attr_accessor :code_pegs
 
   def initialize(code_pegs = empty_code_pegs)
     @code_pegs = code_pegs
@@ -9,10 +13,6 @@ class Board
 
   def empty_code_pegs
     Array.new(4, '_')
-  end
-
-  def display_mastermind_pegs
-    empty_code_pegs.join(' ')
   end
 
   def empty_key_pegs
@@ -26,33 +26,34 @@ class Board
   def create_modified_row
   end
 
-  def display_row(row)
-    row.join(" ") # string. what if i wanna display modified row?
+  def display_empty_row
+    create_empty_row.join(" ") # string
   end
 
-  def display_board(row)
-    <<-ALLPEGS
-                      #{display_mastermind_pegs}
+  #def show_clear_board
+  #  show_board(display_empty_row)
+  #end
 
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
-                      #{display_row(row)}
+  def show_board(row, code)
+    puts <<-ALLPEGS
+
+      Secret code --> #{code}
+
+                      #{row}
+                      #{row}
+                      #{row}
+                      #{row}
+                      #{row}
+                      #{row}
+                      #{row}
+                      #{row}
+                      #{row}
+                      #{row}
+                      #{row}
+      START HERE -->  #{row}
+
     ALLPEGS
   end
 
-  def display_clear_board
-    display_board(create_empty_row)
-  end
 
 end
-
-puts Board.new.display_first_board

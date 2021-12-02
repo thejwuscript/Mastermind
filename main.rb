@@ -15,4 +15,5 @@ require_relative 'game.rb'
 puts "Let's play Mastermind."
 puts "AI will be the Mastermind. You will be the Codebreaker."
 
-Game.new.play
+game = Game.new
+game.play

@@ -2,6 +2,7 @@
 
 class Mastermind
   include Colors
+
   attr_accessor :name, :colors, :secret_code
 
   def initialize
@@ -11,7 +12,11 @@ class Mastermind
   end
 
   def generate_code
-    colors.sample(4) #array
+    self.secret_code = to_coloredpegs(colors.sample(4)) #array
+  end
+
+  def hide_secret_code
+    secret_code.split.map {|peg| "?" }.join(" ")
   end
 end
 
