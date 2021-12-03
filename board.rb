@@ -5,55 +5,50 @@ class Board
   
   include Colors
 
-  attr_accessor :code_pegs
+  attr_accessor :secret_pegs, :guess_pegs, :key_pegs, :row
 
-  def initialize(code_pegs = empty_code_pegs)
-    @code_pegs = code_pegs
+  def initialize
+    @secret_pegs = nil
+    @guess_pegs = empty_pegs
+    @key_pegs = empty_pegs
+    @row = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map { display_empty_row }
   end
 
-  def empty_code_pegs
+  def empty_pegs
     Array.new(4, '_')
   end
 
-  def empty_key_pegs
-    Array.new(4, '_')
-  end
-
-  def create_empty_row
-    empty_code_pegs.push(" | ").concat(empty_key_pegs) # array
-  end
-
-  def create_modified_row
+  def empty_row
+    empty_pegs.push(" | ").concat(empty_pegs) # array
   end
 
   def display_empty_row
-    create_empty_row.join(" ") # string
+    empty_row.join(" ") # string
   end
 
-  #def show_clear_board
-  #  show_board(display_empty_row)
-  #end
+  def update_row(number)
+    row[number] = "#{guess_pegs} | #{key_pegs}"
+  end
 
-  def show_board(row, code)
+
+  def show_board
     puts <<-ALLPEGS
 
-      Secret code --> #{code}
+      Secret code --> #{secret_pegs}
 
-                      #{row}
-                      #{row}
-                      #{row}
-                      #{row}
-                      #{row}
-                      #{row}
-                      #{row}
-                      #{row}
-                      #{row}
-                      #{row}
-                      #{row}
-      START HERE -->  #{row}
+                      #{row[11]}
+                      #{row[10]}
+                      #{row[9]}
+                      #{row[8]}
+                      #{row[7]}
+                      #{row[6]}
+                      #{row[5]}
+                      #{row[4]}
+                      #{row[3]}
+                      #{row[2]}
+                      #{row[1]}
+      START HERE -->  #{row[0]}
 
     ALLPEGS
   end
-
-
 end

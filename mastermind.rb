@@ -7,7 +7,7 @@ class Mastermind
 
   def initialize
     @name = "Mastermind"
-    @colors = LETTER_OF_COLORS
+    @colors = LETTERS
     @secret_code = nil
   end
 
