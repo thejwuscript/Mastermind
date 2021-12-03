@@ -7,6 +7,5 @@ class Codebreaker
     @name = nil
     @guess = nil
   end
-
 end
 

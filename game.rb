@@ -21,6 +21,7 @@ class Game
     mastermind.name = "Computer"
     mastermind.generate_code
     prep_board
+    p mastermind.secret_code
     round
     game_end
   end
@@ -86,13 +87,6 @@ class Game
   end
 
   def aicodebreaker_turn
-    # Take 4 samples of the color pegs array. Make sure it in color circles.
     codebreaker.guess = COLORED_PEGS.sample(4)
-    # Store AI's guues in codebreaker.guess as an array
   end
-
-
 end
-
-
-# codebreaker wins if mastermind.secret_code == to_coloredpegs(codebreaker.guess)

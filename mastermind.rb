@@ -12,7 +12,7 @@ class Mastermind
   end
 
   def generate_code
-    self.secret_code = to_coloredpegs(colors.sample(4)) #array
+    self.secret_code = to_coloredpegs(colors.sample(4))
   end
 
   def hide_secret_code

@@ -2,7 +2,6 @@
 require_relative 'colors.rb'
 
 class Board
-  
   include Colors
 
   attr_accessor :secret_pegs, :guess_pegs, :key_pegs, :row

@@ -13,11 +13,9 @@ puts "Enter '1' or '2' to choose your side. (1 = Codebreaker, 2 = Mastermind)"
 game = Game.new
 if gets.chomp.to_i == 1
   puts "You chose Codebreaker."
-
   game.play_as_1
 else 
   puts "You chose Mastermind."
-
   game.play_as_2
 end
 
