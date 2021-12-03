@@ -38,18 +38,34 @@ class Game
   end
 
   def codebreaker_turn
-    codebreaker.guess = gets.chomp.scan(/\w+/)
-    guess_pegs = to_coloredpegs(codebreaker.guess)
-    board.current_row = guess_pegs + ['|'] + board.empty_pegs
+    codebreaker.guess = to_coloredpegs(gets.chomp.scan(/\w+/))
+    board.current_row = codebreaker.guess + ['|'] + board.empty_pegs
   end
 
   def mastermind_turn
-    p mastermind.secret_code
-    p codebreaker.guess
-    #Check mastermind's secret code against codebreaker's guess.
+    # Check mastermind's secret code against codebreaker's guess.
+    give_feedback
+    # Update the key pegs of the current row.
 
-    #Update the key pegs of the current row.
-    
+  end
+
+  def give_feedback
+   p code = mastermind.secret_code
+   p guess = codebreaker.guess
+    feedback = ['_','_','_', '_']
+    for i in 0..3
+      if guess.include?(code[i])
+        if code[i] == guess[i]
+          feedback[i] = "R"
+          next
+        end
+        feedback[i] = "W"
+      end
+    end
+    p feedback.shuffle.sort
   end
 
 end
+
+
+# codebreaker wins if mastermind.secret_code == to_coloredpegs(codebreaker.guess)
