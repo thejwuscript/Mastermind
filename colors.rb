@@ -5,7 +5,7 @@ module Colors
 
   def to_coloredpegs(array)
     conversion_list = Hash[LETTERS.zip(COLORED_PEGS)]
-    array.map { |letter| conversion_list[letter] }.join(' ')
+    array.map { |letter| conversion_list[letter] }
   end
 end
 

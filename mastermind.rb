@@ -16,7 +16,7 @@ class Mastermind
   end
 
   def hide_secret_code
-    secret_code.split.map {|peg| "?" }.join(" ")
+    secret_code.map {|peg| "?" }.join(" ")
   end
 end
 

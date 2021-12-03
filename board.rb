@@ -14,12 +14,20 @@ class Board
     @row = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map { display_empty_row }
   end
 
+  def current_row
+    @row[Game::ROUND_COUNT-1]
+  end
+
+  def current_row=(value)
+    @row[Game::ROUND_COUNT-1] = value.join(" ")
+  end
+
   def empty_pegs
-    Array.new(4, '_')
+    Array.new(4, '_ ')
   end
 
   def empty_row
-    empty_pegs.push(" | ").concat(empty_pegs) # array
+    empty_pegs.push("|").concat(empty_pegs) # array
   end
 
   def display_empty_row
@@ -29,7 +37,6 @@ class Board
   def update_row(number)
     row[number] = "#{guess_pegs} | #{key_pegs}"
   end
-
 
   def show_board
     puts <<-ALLPEGS
