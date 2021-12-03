@@ -1,7 +1,7 @@
 module Colors 
   
-  LETTERS = ['R', 'O', 'Y', 'G', 'Bl', 'P', 'Br', 'W'].freeze
-  COLORED_PEGS = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '⚪'].freeze
+  LETTERS = ['R', 'O', 'Y', 'G', 'Bl', 'P', 'Br', 'W', '_ '].freeze
+  COLORED_PEGS = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '⚪', '_ '].freeze
 
   def to_coloredpegs(array)
     conversion_list = Hash[LETTERS.zip(COLORED_PEGS)]

@@ -15,11 +15,11 @@ class Board
   end
 
   def current_row
-    @row[Game::ROUND_COUNT-1]
+    @row[Game.round_count-1]
   end
 
   def current_row=(value)
-    @row[Game::ROUND_COUNT-1] = value.join(" ")
+    @row[Game.round_count-1] = value.join(" ")
   end
 
   def empty_pegs

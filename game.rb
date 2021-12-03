@@ -4,7 +4,11 @@ class Game
   include Colors
   attr_accessor :board, :codebreaker, :mastermind
 
-  ROUND_COUNT = 1
+  @@round_count = 1
+
+  def self.round_count
+    @@round_count
+  end
   
   def initialize
     @board = Board.new
@@ -12,18 +16,13 @@ class Game
     @mastermind = Mastermind.new
   end
   
-
-
   def play
-    # Mastermind creates the secret code and stores it as an attribute.
     mastermind.generate_code
-    # Hide the code and show the board.
     prep_board
-    # Codebreaker chooses 4 colors and place them in the first row, to make their guess.
-    # Mastermind provides feedback.
     round
     # Repeat the last two steps above until codebreaker gets the sequence right within 12 turns
     # If codebreaker can't get it right within 12 turns, mastermind wins and reveals the code.
+    game_end
   end
 
   def prep_board
@@ -35,6 +34,13 @@ class Game
     codebreaker_turn
     board.show_board
     mastermind_turn
+    board.show_board
+    if mastermind.secret_code == to_coloredpegs(codebreaker.guess) || @@round_count == 12
+      puts "You win!"
+      return
+    end
+    @@round_count += 1
+    round
   end
 
   def codebreaker_turn
@@ -43,26 +49,24 @@ class Game
   end
 
   def mastermind_turn
-    # Check mastermind's secret code against codebreaker's guess.
-    give_feedback
-    # Update the key pegs of the current row.
-
+    board.current_row = codebreaker.guess + ['|'] + to_coloredpegs(feedback)
   end
 
-  def give_feedback
-   p code = mastermind.secret_code
-   p guess = codebreaker.guess
-    feedback = ['_','_','_', '_']
+  def feedback
+    feedback_ary = ['_ ', '_ ', '_ ', '_ ']
     for i in 0..3
-      if guess.include?(code[i])
-        if code[i] == guess[i]
-          feedback[i] = "R"
+      if codebreaker.guess.include?(mastermind.secret_code[i])
+        if mastermind.secret_code[i] == codebreaker.guess[i]
+          feedback_ary[i] = "R"
           next
         end
-        feedback[i] = "W"
+        feedback_ary[i] = "W"
       end
     end
-    p feedback.shuffle.sort
+    feedback_ary.shuffle.sort # array, letters, not converted yet
+  end
+
+  def game_end
   end
 
 end
