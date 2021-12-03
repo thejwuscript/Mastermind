@@ -1,11 +1,17 @@
 module Colors 
   
-  LETTERS = ['R', 'O', 'Y', 'G', 'Bl', 'P', 'Br', 'W', '_ '].freeze
-  COLORED_PEGS = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '⚪', '_ '].freeze
+  LETTERS = ['R', 'O', 'Y', 'G', 'Bl', 'P', 'Br', 'W'].freeze
+  COLORED_PEGS = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '⚪'].freeze
 
   def to_coloredpegs(array)
     conversion_list = Hash[LETTERS.zip(COLORED_PEGS)]
-    array.map { |letter| conversion_list[letter] }
+    array.map do |letter|
+      if letter == '_ '
+        '_ '
+      else
+        conversion_list[letter]
+      end
+    end
   end
 end
 

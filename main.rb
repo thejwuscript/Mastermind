@@ -1,10 +1,6 @@
 # frozen_string_literal: true
-# Build a Mastermind game from the command line where you have 12 turns to guess the secret code,
-# starting with you guessing the computer’s random code.
-#
-# Assume the computer randomly selects the secret colors and the human player must guess them.
-#"🔴🟠🟡🟢🔵🟣🟤⚪"
-# puts 
+
+# 🔴🟠🟡🟢🔵🟣🟤⚪
 
 require_relative 'board.rb'
 require_relative 'codebreaker.rb'
@@ -12,8 +8,12 @@ require_relative 'colors.rb'
 require_relative 'mastermind.rb'
 require_relative 'game.rb'
 
-puts "Let's play Mastermind."
-puts "AI will be the Mastermind. You will be the Codebreaker."
-
+puts 'Welcome to Mastermind. You will play against the computer.'
+puts "Enter '1' or '2' to choose your side. (1 = Codebreaker, 2 = Mastermind)"
 game = Game.new
-game.play
+if gets.chomp == 1
+  game.play_as_1
+else game.play_as_2
+
+# Now refactor your code to allow the human player to choose whether they want to be the
+# creator of the secret code or the guesser.

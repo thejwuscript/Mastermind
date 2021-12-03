@@ -18,5 +18,12 @@ class Mastermind
   def hide_secret_code
     secret_code.map {|peg| "?" }.join(" ")
   end
+
+  def decide_secret_code
+   secret_code = to_coloredpegs(gets.chomp.scan(/\w+/))
+   p secret_code
+  end
+
+
 end
 

@@ -16,13 +16,15 @@ class Game
     @mastermind = Mastermind.new
   end
   
-  def play
+  def play_as_1
     mastermind.generate_code
     prep_board
     round
-    # Repeat the last two steps above until codebreaker gets the sequence right within 12 turns
-    # If codebreaker can't get it right within 12 turns, mastermind wins and reveals the code.
     game_end
+  end
+
+  def play_as_2
+    # mastermind.choose_code
   end
 
   def prep_board
@@ -32,13 +34,13 @@ class Game
 
   def round
     codebreaker_turn
-    board.show_board
     mastermind_turn
-    board.show_board
-    if mastermind.secret_code == to_coloredpegs(codebreaker.guess) || @@round_count == 12
-      puts "You win!"
+    # p mastermind.secret_code
+    # p codebreaker.guess
+    if mastermind.secret_code == codebreaker.guess || @@round_count == 12
       return
     end
+    board.show_board
     @@round_count += 1
     round
   end
@@ -63,10 +65,16 @@ class Game
         feedback_ary[i] = "W"
       end
     end
-    feedback_ary.shuffle.sort # array, letters, not converted yet
+    feedback_ary.shuffle.sort
   end
 
   def game_end
+    board.secret_pegs = mastermind.secret_code.join(" ")
+    board.show_board
+    if mastermind.secret_code == codebreaker.guess
+      puts "Congratulations, you win!"
+    else puts "Oh no, you didn't get the secret code."
+    end
   end
 
 end
