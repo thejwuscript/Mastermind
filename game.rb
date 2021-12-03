@@ -17,14 +17,12 @@ class Game
   end
   
   def play_as_1
+    codebreaker.name = "Player"
+    mastermind.name = "Computer"
     mastermind.generate_code
     prep_board
     round
     game_end
-  end
-
-  def play_as_2
-    # mastermind.choose_code
   end
 
   def prep_board
@@ -33,10 +31,8 @@ class Game
   end
 
   def round
-    codebreaker_turn
+    codebreaker.name == "Player" ? codebreaker_turn : aicodebreaker_turn
     mastermind_turn
-    # p mastermind.secret_code
-    # p codebreaker.guess
     if mastermind.secret_code == codebreaker.guess || @@round_count == 12
       return
     end
@@ -71,11 +67,30 @@ class Game
   def game_end
     board.secret_pegs = mastermind.secret_code.join(" ")
     board.show_board
-    if mastermind.secret_code == codebreaker.guess
+    if mastermind.secret_code == codebreaker.guess && codebreaker.name == "Player"
       puts "Congratulations, you win!"
-    else puts "Oh no, you didn't get the secret code."
+    elsif @@round_count == 12 && mastermind.name == "Player"
+      puts "Congratulations, you win!"
+    else
+      puts "Oh no, you didn't get the secret code."
     end
   end
+
+  def play_as_2
+    codebreaker.name = "Computer"
+    mastermind.name = "Player"
+    board.secret_pegs = mastermind.decide_secret_code
+    board.show_board
+    round
+    game_end
+  end
+
+  def aicodebreaker_turn
+    # Take 4 samples of the color pegs array. Make sure it in color circles.
+    codebreaker.guess = COLORED_PEGS.sample(4)
+    # Store AI's guues in codebreaker.guess as an array
+  end
+
 
 end
 

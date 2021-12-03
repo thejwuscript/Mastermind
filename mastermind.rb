@@ -6,7 +6,7 @@ class Mastermind
   attr_accessor :name, :colors, :secret_code
 
   def initialize
-    @name = "Mastermind"
+    @name = nil
     @colors = LETTERS
     @secret_code = nil
   end
@@ -20,8 +20,8 @@ class Mastermind
   end
 
   def decide_secret_code
-   secret_code = to_coloredpegs(gets.chomp.scan(/\w+/))
-   p secret_code
+    puts "Decide your secret code."
+    self.secret_code = to_coloredpegs(gets.chomp.scan(/\w+/))  
   end
 
 
