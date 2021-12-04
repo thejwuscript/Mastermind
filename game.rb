@@ -5,6 +5,10 @@ class Game
   attr_accessor :board, :codebreaker, :mastermind
 
   @@round_count = 1
+  @@index_array = [0,1,2,3]
+  @@colors_to_choose = []
+  @@filtered_array = COLORED_PEGS.map { |color| color }
+
 
   def self.round_count
     @@round_count
@@ -54,7 +58,7 @@ class Game
   def feedback
     feedback_ary = ['_ ', '_ ', '_ ', '_ ']
     for i in 0..3
-      if codebreaker.guess.include?(mastermind.secret_code[i])
+      if mastermind.secret_code.include?(codebreaker.guess[i])
         if mastermind.secret_code[i] == codebreaker.guess[i]
           feedback_ary[i] = "R"
           next
@@ -62,7 +66,10 @@ class Game
         feedback_ary[i] = "W"
       end
     end
-    feedback_ary.shuffle.sort
+    if codebreaker.name == 'Player'
+      feedback_ary.shuffle.sort
+    else feedback_ary
+    end
   end
 
   def game_end
@@ -87,6 +94,45 @@ class Game
   end
 
   def aicodebreaker_turn
-    codebreaker.guess = COLORED_PEGS.sample(4)
+    if @@round_count == 1
+      codebreaker.guess = COLORED_PEGS.sample(4)
+      return
+    end
+    match_reds
+    match_length
+    assign_color
+    reset_values
+  end
+
+  def match_reds
+    for i in 0..3
+      if feedback[i] == "R"
+        @@index_array.delete(i)
+        @@filtered_array.delete(codebreaker.guess[i])
+      elsif feedback[i] == '_ '
+        @@filtered_array.delete(codebreaker.guess[i])
+      elsif feedback[i] == "W"
+        @@colors_to_choose.push(codebreaker.guess[i])
+      end
+    end
+  end
+
+  def match_length
+    until @@index_array.length == @@colors_to_choose.length do
+      new_array = @@filtered_array - @@colors_to_choose
+      @@colors_to_choose.push(new_array.sample)
+    end
+  end
+
+  def assign_color
+    @@index_array.each do |num|
+      codebreaker.guess[num] = @@colors_to_choose.sample
+      @@colors_to_choose.delete(codebreaker.guess[num])
+    end
+  end
+
+  def reset_values
+    @@index_array = [0,1,2,3]
+    @@colors_to_choose = []
   end
 end
