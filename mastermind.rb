@@ -23,7 +23,7 @@ class Mastermind
     puts "\nDecide your secret code. (R=🔴, O=🟠, Y=🟡, G=🟢, Bl=🔵, P=🟣, Br=🟤, W=⚪)"
     i = 0
     loop do
-      self.secret_code = to_coloredpegs(gets.chomp.scan(/\w+/))
+      self.secret_code = to_coloredpegs(gets.chomp.upcase.scan(/\w+/))
       if secret_code.uniq.length != 4
         system('tput cuu1 && tput el')
         print "Invalid entry. Please try again. "

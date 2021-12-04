@@ -1,6 +1,6 @@
 module Colors 
   
-  LETTERS = ['R', 'O', 'Y', 'G', 'Bl', 'P', 'Br', 'W'].freeze
+  LETTERS = ['R', 'O', 'Y', 'G', 'BL', 'P', 'BR', 'W'].freeze
   COLORED_PEGS = ['🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '🟤', '⚪'].freeze
 
   def to_coloredpegs(array)

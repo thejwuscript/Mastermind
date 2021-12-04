@@ -46,8 +46,9 @@ class Game
   end
 
   def codebreaker_turn
-    codebreaker.guess = to_coloredpegs(gets.chomp.scan(/\w+/))
-    if codebreaker.guess.uniq.length == 4
+    print "Enter four colors: "
+    codebreaker.guess = to_coloredpegs(gets.chomp.upcase.scan(/\w+/))
+    if codebreaker.guess.compact.uniq.length == 4
       board.current_row = codebreaker.guess + ['|'] + board.empty_pegs
     else
       puts "Invalid entry. Please try again."
