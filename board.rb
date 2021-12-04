@@ -38,22 +38,27 @@ class Board
   end
 
   def show_board
+    if secret_pegs[0] == '?'
+      system('clear')
+    else
+      system('tput cup 2 0')
+    end
     puts <<~ALLPEGS
 
       Secret code --> #{secret_pegs}
 
                       #{row[11]}            LEGEND:
-                      #{row[10]}            
-                      #{row[9]}            
-                      #{row[8]}             
-                      #{row[7]}
-                      #{row[6]}
-                      #{row[5]}
-                      #{row[4]}
-                      #{row[3]}
+                      #{row[10]}            R=🔴
+                      #{row[9]}            O=🟠
+                      #{row[8]}            Y=🟡
+                      #{row[7]}            G=🟢
+                      #{row[6]}            Bl=🔵
+                      #{row[5]}            P=🟣
+                      #{row[4]}            Br=🟤
+                      #{row[3]}            W=⚪
                       #{row[2]}
                       #{row[1]}
-      START HERE -->  #{row[0]}
+                      #{row[0]}
 
     ALLPEGS
   end

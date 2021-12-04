@@ -79,13 +79,14 @@ class Game
     elsif @@round_count == 12 && mastermind.name == "Player"
       puts "Congratulations, you win!"
     else
-      puts "Oh no, computer wins."
+      puts "Oh no, computer wins. Game over."
     end
   end
 
   def play_as_2
     codebreaker.name = "Computer"
     mastermind.name = "Player"
+    system('clear')
     board.secret_pegs = mastermind.decide_secret_code
     board.show_board
     round

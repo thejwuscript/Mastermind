@@ -20,7 +20,7 @@ class Mastermind
   end
 
   def decide_secret_code
-    puts "Decide your secret code."
+    puts "\nDecide your secret code. (R=🔴, O=🟠, Y=🟡, G=🟢, Bl=🔵, P=🟣, Br=🟤, W=⚪)"
     self.secret_code = to_coloredpegs(gets.chomp.scan(/\w+/))
     secret_code.join(" ")
   end
