@@ -32,15 +32,22 @@ end
 
 system('clear')
 puts 'Welcome to Mastermind. You will play against the computer.'
-puts "Enter '1' or '2' to choose your side. (1 = Codebreaker, 2 = Mastermind)"
+puts "Enter the number '1' or '2' to choose your side. (1 = Codebreaker, 2 = Mastermind)"
 game = Game.new
-if gets.chomp.to_i == 1
-  puts "You chose Codebreaker. Let's begin."
-  loading
-  game.play_as_1
-else 
-  puts "You chose Mastermind. Let's begin."
-  loading
-  game.play_as_2
+loop do
+  case gets.chomp.to_i
+  when 1
+    puts "You are Codebreaker. Let's begin."
+    loading
+    game.play_as_1
+    break
+  when 2
+    puts "You are Mastermind. Let's begin."
+    loading
+    game.play_as_2
+    break
+  else
+    puts "Invalid entry. Please try again."
+  end
 end
 

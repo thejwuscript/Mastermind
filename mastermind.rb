@@ -21,10 +21,21 @@ class Mastermind
 
   def decide_secret_code
     puts "\nDecide your secret code. (R=🔴, O=🟠, Y=🟡, G=🟢, Bl=🔵, P=🟣, Br=🟤, W=⚪)"
-    self.secret_code = to_coloredpegs(gets.chomp.scan(/\w+/))
+    i = 0
+    loop do
+      self.secret_code = to_coloredpegs(gets.chomp.scan(/\w+/))
+      if secret_code.uniq.length != 4
+        system('tput cuu1 && tput el')
+        print "Invalid entry. Please try again. "
+        i += 1
+      else break
+      end
+    end
+    if i > 0
+      system('tput cup 2 0 && tput dch 33')
+    end
     secret_code.join(" ")
   end
-
 
 end
 

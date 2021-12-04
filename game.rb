@@ -47,7 +47,12 @@ class Game
 
   def codebreaker_turn
     codebreaker.guess = to_coloredpegs(gets.chomp.scan(/\w+/))
-    board.current_row = codebreaker.guess + ['|'] + board.empty_pegs
+    if codebreaker.guess.uniq.length == 4
+      board.current_row = codebreaker.guess + ['|'] + board.empty_pegs
+    else
+      puts "Invalid entry. Please try again."
+      codebreaker_turn
+    end
   end
 
   def mastermind_turn
