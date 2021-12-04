@@ -38,14 +38,14 @@ class Board
   end
 
   def show_board
-    puts <<-ALLPEGS
+    puts <<~ALLPEGS
 
       Secret code --> #{secret_pegs}
 
-                      #{row[11]}
-                      #{row[10]}
-                      #{row[9]}
-                      #{row[8]}
+                      #{row[11]}            LEGEND:
+                      #{row[10]}            
+                      #{row[9]}            
+                      #{row[8]}             
                       #{row[7]}
                       #{row[6]}
                       #{row[5]}

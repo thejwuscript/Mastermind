@@ -25,7 +25,6 @@ class Game
     mastermind.name = "Computer"
     mastermind.generate_code
     prep_board
-    p mastermind.secret_code
     round
     game_end
   end
@@ -52,7 +51,7 @@ class Game
   end
 
   def mastermind_turn
-    board.current_row = codebreaker.guess + ['|'] + to_coloredpegs(feedback)
+    board.current_row = codebreaker.guess + ['|'] + to_coloredpegs(feedback.shuffle.sort)
   end
 
   def feedback
@@ -80,7 +79,7 @@ class Game
     elsif @@round_count == 12 && mastermind.name == "Player"
       puts "Congratulations, you win!"
     else
-      puts "Oh no, you didn't get the secret code."
+      puts "Oh no, computer wins."
     end
   end
 
@@ -98,9 +97,13 @@ class Game
       codebreaker.guess = COLORED_PEGS.sample(4)
       return
     end
+    3.downto(0) do |i|
+      print "Computer thinking...#{i} \r"
+      sleep 1
+    end
     match_reds
     match_length
-    assign_color
+    assign_unique_color
     reset_values
   end
 
@@ -124,7 +127,7 @@ class Game
     end
   end
 
-  def assign_color
+  def assign_unique_color
     @@index_array.each do |num|
       codebreaker.guess[num] = @@colors_to_choose.sample
       @@colors_to_choose.delete(codebreaker.guess[num])

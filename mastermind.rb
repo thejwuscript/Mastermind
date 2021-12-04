@@ -16,12 +16,13 @@ class Mastermind
   end
 
   def hide_secret_code
-    secret_code.map {|peg| "?" }.join(" ")
+    secret_code.map {|peg| "? " }.join(" ")
   end
 
   def decide_secret_code
     puts "Decide your secret code."
-    self.secret_code = to_coloredpegs(gets.chomp.scan(/\w+/))  
+    self.secret_code = to_coloredpegs(gets.chomp.scan(/\w+/))
+    secret_code.join(" ")
   end
 
 
