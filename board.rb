@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require_relative 'colors.rb'
+
+require_relative 'colors'
 
 class Board
   include Colors
@@ -14,11 +15,11 @@ class Board
   end
 
   def current_row
-    @row[Game.round_count-1]
+    @row[Game.round_count - 1]
   end
 
   def current_row=(value)
-    @row[Game.round_count-1] = value.join(" ")
+    @row[Game.round_count - 1] = value.join(' ')
   end
 
   def empty_pegs
@@ -26,11 +27,11 @@ class Board
   end
 
   def empty_row
-    empty_pegs.push("|").concat(empty_pegs) # array
+    empty_pegs.push('|').concat(empty_pegs) # array
   end
 
   def display_empty_row
-    empty_row.join(" ") # string
+    empty_row.join(' ') # string
   end
 
   def update_row(number)
@@ -38,11 +39,6 @@ class Board
   end
 
   def show_board
-    if secret_pegs[0] == '?'
-      system('clear')
-    else
-      system('tput cup 2 0')
-    end
     puts <<~ALLPEGS
 
       Secret code --> #{secret_pegs}

@@ -2,31 +2,37 @@
 
 # 🔴🟠🟡🟢🔵🟣🟤⚪
 
-require_relative 'board.rb'
-require_relative 'codebreaker.rb'
-require_relative 'colors.rb'
-require_relative 'mastermind.rb'
-require_relative 'game.rb'
+require_relative 'board'
+require_relative 'codebreaker'
+require_relative 'colors'
+require_relative 'mastermind'
+require_relative 'game'
 
 def loading
-  print "Loading game"
+  print 'Loading game'
   2.times do
-    sleep 0.5; print '.'
+    sleep 0.5
+    print '.'
   end
   4.times do
-    sleep 0.05; print ".";
+    sleep 0.05
+    print '.'
   end
   2.times do
-    sleep 0.5; print '.'
+    sleep 0.5
+    print '.'
   end
   3.times do
-    sleep 0.04; print '.'
+    sleep 0.04
+    print '.'
   end
   3.times do
-    sleep 0.7; print '.'
+    sleep 0.7
+    print '.'
   end
   15.times do
-    sleep 0.04; print '.'
+    sleep 0.04
+    print '.'
   end
 end
 
@@ -47,7 +53,6 @@ loop do
     game.play_as_2
     break
   else
-    puts "Invalid entry. Please try again."
+    puts 'Invalid entry. Please try again.'
   end
 end
-

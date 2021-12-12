@@ -16,7 +16,7 @@ class Mastermind
   end
 
   def hide_secret_code
-    secret_code.map {|peg| "? " }.join(" ")
+    secret_code.map { |_peg| '? ' }.join(' ')
   end
 
   def decide_secret_code
@@ -26,16 +26,13 @@ class Mastermind
       self.secret_code = to_coloredpegs(gets.chomp.upcase.scan(/\w+/))
       if secret_code.uniq.length != 4
         system('tput cuu1 && tput el')
-        print "Invalid entry. Please try again. "
+        print 'Invalid entry. Please try again. '
         i += 1
-      else break
+      else
+        break
       end
     end
-    if i > 0
-      system('tput cup 2 0 && tput dch 33')
-    end
-    secret_code.join(" ")
+    system('tput cup 2 0 && tput dch 33') if i.positive?
+    secret_code.join(' ')
   end
-
 end
-
